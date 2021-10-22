@@ -23,7 +23,7 @@ pipeline{
             }
         }
         // stage3 : publish the snapshot over the nexus repository
-         stage ('Sonarqube Analysis'){
+         stage ('stotre the artifact to Nexus repo '){
             steps {
                 nexusArtifactUploader artifacts: [[artifactId: 'AjitDevOpsLab', classifier: '', file: 'target/AjitDevOpsLab-0.0.4-SNAPSHOT.war', type: 'war']], credentialsId: '', groupId: 'com.Ajitdevopslab', nexusUrl: '18.217.9.154:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'Ajit-Devops-Lab.SNAPSHOT', version: '0.0.4-SNAPSHOT'
                 //withSonarQubeEnv('sonarqube'){ // You can override the credential to be used

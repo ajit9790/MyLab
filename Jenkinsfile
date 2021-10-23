@@ -29,21 +29,25 @@ pipeline{
             }
         }
         // stage3 : publish the snapshot over the nexus repository
-         stage ('Publish to Nexus repo '){
+        stage ('Publish to Nexus repo '){
             steps {
-                 nexusArtifactUploader artifacts: 
-                 [[artifactId: "${ArtifactId}",
-                 classifier: '',
-                 file: "target/${ArtifactId}-${Version}.war", 
-                 type: 'war']], 
-                 credentialsId: '8f4c4a47-f87b-46da-9a60-68063b4b9bde', 
-                 groupId: "${GroupId}", 
-                 nexusUrl: '172.20.10.128:8081', 
-                 nexusVersion: 'nexus3', protocol: 'http',
-                 repository: "${NexusRepo}", 
-                 version: "${Version}"
-                
+                script {
 
+                def NexusRepo = Version.endsWith("SNAPSHOT") ? "AjitDevopsLab-SNAPSHOT" : "AjitDevopsLab-RELEASE"
+
+                nexusArtifactUploader artifacts: 
+                [[artifactId: "${ArtifactId}", 
+                classifier: '', 
+                file: "target/${ArtifactId}-${Version}.war", 
+                type: 'war']], 
+                credentialsId: '8f4c4a47-f87b-46da-9a60-68063b4b9bde', 
+                groupId: "${GroupId}", 
+                nexusUrl: '172.20.10.128:8081', 
+                nexusVersion: 'nexus3', 
+                protocol: 'http', 
+                repository: "${NexusRepo}", 
+                version: "${Version}"
+               }
             }
         }
          // Stage 4 : Print some information

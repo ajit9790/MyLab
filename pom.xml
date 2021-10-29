@@ -4,7 +4,7 @@
   <groupId>com.AjitDevOpsLab</groupId>
   <artifactId>AjitDevOpsLab</artifactId>
   <packaging>war</packaging>
-  <version>0.0.10-RELEASE</version>
+  <version>0.0.10-SNAPSHOT</version>
   <name>AjitDevOpsLab</name>
   <url>http://maven.apache.org</url>
   <dependencies>
